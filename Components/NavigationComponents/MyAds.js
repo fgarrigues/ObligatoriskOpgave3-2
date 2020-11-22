@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import {View, Text, StyleSheet, Button, TouchableOpacity} from 'react-native';
-import {createStackNavigator} from "react-navigation-stack";
-import { Ionicons } from '@expo/vector-icons';
-import {Divider} from "react-native-elements";
-
 
 //Klasse til at vise brugerens annoncer
 export default class MyAds extends Component {
@@ -11,7 +7,6 @@ export default class MyAds extends Component {
     static navigationOptions= {
         title:'Fodboldbørsen'
     }
-
     //Opsat så der kan trykkes på annoncerne - tiltænkt at de skal indeholde billeder og info
     render(){
         return (
@@ -30,7 +25,6 @@ export default class MyAds extends Component {
         );
     };
 }
-
 const styles = StyleSheet.create({
     container: {
         paddingTop:10,
@@ -40,7 +34,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#f0ead6',
         height:'100%'
-
     },
     header: {
         fontSize: 25,

@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import {View, Text, StyleSheet, Button, TouchableOpacity} from 'react-native';
-import {createStackNavigator} from "react-navigation-stack";
-import { Ionicons } from '@expo/vector-icons';
-import {Divider} from "react-native-elements";
 
 export default class MyAds extends Component {
     static navigationOptions= {
@@ -26,7 +23,6 @@ export default class MyAds extends Component {
         );
     };
 }
-
 const styles = StyleSheet.create({
     container: {
         paddingTop:10,

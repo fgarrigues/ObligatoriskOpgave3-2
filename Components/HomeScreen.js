@@ -50,7 +50,7 @@ export default class HomeScreen extends Component {
         const renderArticleItem = ({item}) => (
             <ArticleItem ArticleId={item}/>
         )
-
+//Forside med billede og FlatList, der forhåbentlig senere skal fungere som fotogrid
         return (
             <SafeAreaView style={styles.safeview}>
             <View style={styles.container}>

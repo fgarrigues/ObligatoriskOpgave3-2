@@ -16,6 +16,11 @@ import {createStackNavigator} from "react-navigation-stack";
 import Constants from 'expo-constants';
 import MyFavorites from "./Components/NavigationComponents/MyFavorites";
 import MyDetails from "./Components/NavigationComponents/MyDetails";
+import GlobalUser from "./Components/GlobalUser"
+import firebase from "firebase";
+import LoginView from "./Components/Login/LoginView";
+import SignUpView from "./Components/Login/SignUpView";
+import {AntDesign} from '@expo/vector-icons';
 
 
 //Oprettelse af stacks også til senere brug, så der kan oprettes navigation
@@ -56,6 +61,7 @@ const styles = StyleSheet.create({
         height: 32,
     },
 });
+
 
 // TabNavigator til at skifte mellem de forskellige screens
 const TabNavigator = createBottomTabNavigator(
@@ -112,18 +118,93 @@ const TabNavigator = createBottomTabNavigator(
     /*Generelle label indstillinger*/
     {
         tabBarOptions: {
-            showIcon:true,
+            showIcon: true,
             labelStyle: {
                 fontSize: 15,
             },
             activeTintColor: 'blue',
             inactiveTintColor: 'gray',
-            size:40
+            size: 40
         }
+
+
+    });
+const LoginNavigator = createBottomTabNavigator({
+        Login: {
+            screen: LoginView,
+            navigationOptions: {
+                tabBarIcon:({tintColor}) => (
+                    <AntDesign name={"login"} size={24} color={tintColor}/>
+                )
+            }
+        },
+        SignUp: {
+            screen: SignUpView,
+            navigationOptions: {
+                tabBarIcon:({tintColor}) => (
+                    <AntDesign name={"plus"} size={24} color={tintColor}/>
+                )
+            }
+        },
+    }
+);
+
+const LoginContainer = createAppContainer(LoginNavigator);
+const AppContainer = createAppContainer(TabNavigator);
+
+export default class App extends React.Component {
+
+    constructor() {
+        super();
+        GlobalUser.user = this;
+        this.init();
+        this.observeAuth();
+    }
+    state= {
+        user:null
+    };
+
+    componentWillUnmount() {
+        this.setState = (state,callback)=>{
+            return;
+        };
     }
 
-)
+    //Opretter forbindelse til vores firebase
+    init = () => {
+        const firebaseConfig = {
+            apiKey: "AIzaSyDelHr7mg6rUftL9Ze249wpSceY0q7_4yc",
+            authDomain: "innovationsprojekt-1563f.firebaseapp.com",
+            databaseURL: "https://innovationsprojekt-1563f.firebaseio.com",
+            projectId: "innovationsprojekt-1563f",
+            storageBucket: "innovationsprojekt-1563f.appspot.com",
+            messagingSenderId: "645246991711",
+            appId: "1:645246991711:web:9145bc935df41b83314aea",
+            measurementId: "G-6HCQS9TQ8N"
 
-export default createAppContainer(TabNavigator);
+        }
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+    }
+    observeAuth = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({user});
+
+            GlobalUser.user.setState({
+                user:user
+            })
+        });
+    }
+    render() {
+        if (!this.state.user) {
+            return <LoginContainer/>
+        } else {
+            //Returnere vores tab navigator
+            return <AppContainer/>;
+        }
+    }
+}
 
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {View, Text, StyleSheet, Button, TouchableOpacity} from 'react-native';
 
-
 export default class MyAds extends Component {
     static navigationOptions= {
         title:'Fodboldbørsen'

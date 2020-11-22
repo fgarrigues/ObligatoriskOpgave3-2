@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet,Button } from 'react-native';
-import {createStackNavigator} from "react-navigation-stack";
-import { Ionicons } from '@expo/vector-icons';
+
 
 export default class DetailsScreen extends Component {
     static navigationOptions= {
-        title:'Privacy Policy'
+        title: 'Privacy Policy'
     }
-
 //View til appens privatpolitik
     render(){
         return (
@@ -21,7 +19,6 @@ export default class DetailsScreen extends Component {
         );
     };
 }
-
 const styles = StyleSheet.create({
     container: {
         paddingTop:200,

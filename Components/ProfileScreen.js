@@ -32,7 +32,6 @@ export default class ProfileScreen extends Component {
         );
     };
 }
-
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'space-between',
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
         fontSize: 25,
         alignItems: 'center',
         fontStyle: "normal",
-
     },
     logo: {
         width: 150,
@@ -53,8 +51,6 @@ const styles = StyleSheet.create({
         borderWidth: 10,
         borderColor: '#f0ead6',
         justifyContent: 'space-between',
-
-
     },
     button: {
         paddingTop: 20,
